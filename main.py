@@ -25,7 +25,42 @@ jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 #score = None
+letters = {
+    'a': ['img/a1.png'],
+    'b': ['img/b1.png'],
+    'c': ['img/c1.png'],
+    'd': ['img/d1.png'],
+    'e': ['img/e1.png'],
+    'f': ['img/f1.png'],
+    'g': ['img/g1.png'],
+    'h': ['img/h1.png'],
+    'i': ['img/i1.png'],
+    'j': ['img/j1.png'],
+    'k': ['img/k1.png'],
+    'l': ['img/l1.png'],
+    'm': ['img/m1.png'],
+    'n': ['img/n1.png'],
+    'o': ['img/o1.png'],
+    'p': ['img/p1.png'],
+    'q': ['img/q1.png'],
+    'r': ['img/r1.png'],
+    's': ['img/s1.png'],
+    't': ['img/t1.png'],
+    'u': ['img/u1.png'],
+    'v': ['img/v1.png'],
+    'w': ['img/w1.png'],
+    'x': ['img/x1.png'],
+    'y': ['img/y1.png'],
+    'z': ['img/z1.png'],
+
+}
 words = ['hello','easter','macbook','calla']
+
+def hi():
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    #'b': ['img/b1.png'],
+    for letter in alphabet:
+        print '\'' + letter + '\': [\'img/' + letter + '1.png\'],'
 
 class PlayHandler(webapp2.RequestHandler):
     def get(self):

@@ -1,18 +1,19 @@
 <html>
 <head>
 	<title>Retail Alphabet</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.css">
 </head>
 <body>
 	Welcome to the Retail Alphabet game! Your current score is {{ currentscore }}
 	<br>
 	<form action="submit">
-		Word: {{currentword}}
+		Word: {{ currentword }}
+		<img src="/img/a1.png" />
 		<input class="form-control" name="answer1" type="text">
 		<input type="hidden" name="answer1" value={{ answer1 }}>
 		<br><button type="submit" class="btn btn-default">Go</button>
 	</form>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.js"></script>
 </html>
