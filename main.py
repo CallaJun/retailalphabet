@@ -67,6 +67,10 @@ class PlayHandler(webapp2.RequestHandler):
         template_values = {
         }
         currentword = random.choice(words)
+        letterimages = ''
+        for letter in currentword:
+            letterimages = letterimages + '<img height=100 src="' + random.choice(letters[letter]) + '" />'
+        template_values['word'] = letterimages
         template_values['currentword'] = currentword
         #template_values['currentscore'] = str(score)
         template = jinja_environment.get_template('views/play.html')
