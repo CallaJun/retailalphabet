@@ -24,7 +24,7 @@ import random
 jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
-#score = None
+score = 0
 letters = {
     'a': ['img/a1.png','img/a2.png'], #AMC Theatres,Samsung
     'b': ['img/b1.png'],
@@ -72,7 +72,8 @@ class PlayHandler(webapp2.RequestHandler):
             letterimages = letterimages + '<img height=100 src="' + random.choice(letters[letter]) + '" />'
         template_values['word'] = letterimages
         template_values['currentword'] = currentword
-        #template_values['currentscore'] = str(score)
+        template_values['currentscore'] = str(score)
+
         template = jinja_environment.get_template('views/play.html')
         self.response.out.write(template.render(template_values))
 
@@ -82,8 +83,9 @@ class CheckHandler(webapp2.RequestHandler):
         }
         answer1 = self.request.get('answer1')
         template_values['answer1'] = answer1
-
-        #score += 1 #THIS IS THE PROBLEM NOW. CAN'T ACCESS GLOBAL VARIABLE
+        global score
+        score = score+1
+        template_values['currentscore'] = str(score) #THIS IS THE PROBLEM NOW. CAN'T ACCESS GLOBAL VARIABLE
 
         template = jinja_environment.get_template('views/check.html')
         self.response.out.write(template.render(template_values))
