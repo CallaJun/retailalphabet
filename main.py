@@ -20,6 +20,7 @@ import logging
 import urllib2
 import os
 import random
+import answers
 
 jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -56,21 +57,28 @@ letters = {
     'z': ['img/z1.png'],
 
 }
-words = ['ananya', 'calla', 'carrot', 'easter', 'fairy', 'fish', 'hello', 
-        'macbook', 'rabbit', 'santa', 'world','zebra']
+words = ['ananya', 'belarus', 'calla', 'carrot', 'easter', 'fairy', 'fish', 'hello', 
+        'macbook', 'rabbit', 'santa', 'tyrant', 'world','zebra']
 
 class PlayHandler(webapp2.RequestHandler):
     def get(self):
         template_values = {
         }
-        currentword = random.choice(words)
+        currentword = random.choice(words) #gets a random word from list of words
         letterimages = ''
+        answerlist = []
         for letter in currentword:
-            letterimages = letterimages + '<img height=100 src="' + random.choice(letters[letter]) + '" />'
+            #adds image to list
+            thisletter = random.choice(letters[letter])
+            letterimages = letterimages + '<img height=100 src="' + thisletter + '" />'
+            answerlist.append(answers.dictionary[thisletter])
+            #CANNOT GET VALUE OF KEY IN ANSWERS.PY
+        template_values['answerlist'] = answerlist
         template_values['word'] = letterimages
         template_values['currentword'] = currentword
         global word
         word = currentword
+
         template_values['currentscore'] = str(score)
 
         template = jinja_environment.get_template('views/play.html')
@@ -82,7 +90,7 @@ class CheckHandler(webapp2.RequestHandler):
         }
         answer1 = self.request.get('answer1')
         template_values['answer1'] = answer1
-        if answer1==word:
+        if answer1.lower()==word:
             global score
             score = score+1
         template_values['currentscore'] = str(score) #THIS IS THE PROBLEM NOW. CAN'T ACCESS GLOBAL VARIABLE
