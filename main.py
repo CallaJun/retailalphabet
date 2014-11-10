@@ -25,6 +25,8 @@ jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 score = 0
+word = ''
+
 letters = {
     'a': ['img/a1.png','img/a2.png'], #AMC Theatres,Samsung
     'b': ['img/b1.png'],
@@ -54,13 +56,8 @@ letters = {
     'z': ['img/z1.png'],
 
 }
-words = ['ananya', 'calla', 'carrot', 'easter', 'fairy', 'fish', 'hello', 'macbook', 'rabbit', 'santa', 'world']
-
-def hi():
-    alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    #'b': ['img/b1.png'],
-    for letter in alphabet:
-        print '\'' + letter + '\': [\'img/' + letter + '1.png\'],'
+words = ['ananya', 'calla', 'carrot', 'easter', 'fairy', 'fish', 'hello', 
+        'macbook', 'rabbit', 'santa', 'world','zebra']
 
 class PlayHandler(webapp2.RequestHandler):
     def get(self):
@@ -72,6 +69,8 @@ class PlayHandler(webapp2.RequestHandler):
             letterimages = letterimages + '<img height=100 src="' + random.choice(letters[letter]) + '" />'
         template_values['word'] = letterimages
         template_values['currentword'] = currentword
+        global word
+        word = currentword
         template_values['currentscore'] = str(score)
 
         template = jinja_environment.get_template('views/play.html')
@@ -83,8 +82,9 @@ class CheckHandler(webapp2.RequestHandler):
         }
         answer1 = self.request.get('answer1')
         template_values['answer1'] = answer1
-        global score
-        score = score+1
+        if answer1==word:
+            global score
+            score = score+1
         template_values['currentscore'] = str(score) #THIS IS THE PROBLEM NOW. CAN'T ACCESS GLOBAL VARIABLE
 
         template = jinja_environment.get_template('views/check.html')
