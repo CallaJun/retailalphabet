@@ -6,7 +6,7 @@ dictionary = {
 	'img/f1.png': ['facebook'],
 	'img/g1.png': ['general mills'],
     'img/g2.png': ['goodyear'],
-	'img/h1.png': ['yahoo'],
+	'img/h1.png': ['yahoo','harry potter'],
     'img/i1.png': ['intel'],
 	'img/m1.png': ['motorola'],
 	'img/o1.png': ['google'],
@@ -24,8 +24,8 @@ letters = {
     'e': ['img/e1.png'],
     'f': ['img/f1.png'], #Facebook
     'g': ['img/g1.png','img/g2.png'], #General Mills,#GoodYear
-    'h': ['img/h1.png'], #Yahoo
-    'i': ['img/i1.png'],
+    'h': ['img/h1.png','img/h2.png'], #Yahoo
+    'i': ['img/i1.png'], #Intel
     'j': ['img/j1.png'],
     'k': ['img/k1.png'],
     'l': ['img/l1.png'],
